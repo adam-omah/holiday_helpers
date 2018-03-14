@@ -3,59 +3,42 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Holiday Helper</title>
-    
-    <!-- Bootstrap Scripts and Style's -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Holiday Helper</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <!-- /Bootstrap Scripts and Style's/ -->
-    
-    <!-- Google Maps Scripts -->
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfKCpZ0gSdCrd_QdEURuCbAdseRxGU-Ao&libraries=places&callback=initMap" async defer></script>
-    
-    <!-- /Google Maps Scripts/ -->
-    
-    <!-- Links to my own Scripts & styles -->
-    
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="js/maps.js"></script>
-    
-    <!-- /Links to my own Scripts & styles/ -->
-    
+  <!-- Bootstrap Scripts and Style's -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- /Bootstrap Scripts and Style's/ -->
+
+  <!-- Google Maps Scripts -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfKCpZ0gSdCrd_QdEURuCbAdseRxGU-Ao&libraries=places&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyDfKCpZ0gSdCrd_QdEURuCbAdseRxGU-Ao"></script>
+
+  <!-- /Google Maps Scripts/ -->
+
+  <!-- Links to my own Scripts & styles -->
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/maps.js"></script>
+
+  <!-- /Links to my own Scripts & styles/ -->
+
 </head>
 
 <body>
-    
-    <div id="controls">
-      <select id="country">
-        <option value="all">All</option>
-        <option value="au">Australia</option>
-        <option value="br">Brazil</option>
-        <option value="ca">Canada</option>
-        <option value="fr">France</option>
-        <option value="de">Germany</option>
-        <option value="mx">Mexico</option>
-        <option value="nz">New Zealand</option>
-        <option value="it">Italy</option>
-        <option value="za">South Africa</option>
-        <option value="es">Spain</option>
-        <option value="pt">Portugal</option>
-        <option value="us" selected>U.S.A.</option>
-        <option value="uk">United Kingdom</option>
-      </select>
-    </div>
-    
-    <div id="controls2">
-      <select id="selecttype">
+
+
+  <div id="controls2">
+    <select id="selecttype">
         <option value="lodging">Accomodation</option>
         <option value="bar">Bar</option>
         <option value="cafe">Cafe</option>
@@ -63,45 +46,49 @@
         <option value="night_club">Night Clubs</option>
         <option value="restaurant">Restaurant</option>
       </select>
-    </div>
-    
-    <div id="locationField">
-      <input id="autocomplete" placeholder="Enter a city" type="text" />
-    </div>
-    
-     <div id="map"></div>
-     
-         <div id="listing">
-      <table id="resultsTable">
-        <tbody id="results"></tbody>
+  </div>
+
+  <div id="locationField">
+    <input id="autocomplete" placeholder="Enter a city" type="text" />
+  </div>
+
+  <div id="map"></div>
+
+  <div id="listing">
+    <table id="resultsTable">
+      <tbody id="results"></tbody>
+    </table>
+  </div>
+
+  <div style="display: none">
+    <div id="info-content">
+      <table>
+        <tr id="iw-url-row" class="iw_table_row">
+          <td id="iw-icon" class="iw_table_icon"></td>
+          <td id="iw-url"></td>
+        </tr>
+        <tr id="iw-address-row" class="iw_table_row">
+          <td class="iw_attribute_name">Address:</td>
+          <td id="iw-address"></td>
+        </tr>
+        <tr id="iw-phone-row" class="iw_table_row">
+          <td class="iw_attribute_name">Telephone:</td>
+          <td id="iw-phone"></td>
+        </tr>
+        <tr id="iw-rating-row" class="iw_table_row">
+          <td class="iw_attribute_name">Rating:</td>
+          <td id="iw-rating"></td>
+        </tr>
+        <tr id="iw-website-row" class="iw_table_row">
+          <td class="iw_attribute_name">Website:</td>
+          <td id="iw-website"></td>
+        </tr>
+        <tr id="iw-photo-row" class="iw_photo_row">
+          <td class="iw_attribute_name">Photo:<img id="iw-photo"></td>
+          
+        </tr>
       </table>
     </div>
-
-    <div style="display: none">
-      <div id="info-content">
-        <table>
-          <tr id="iw-url-row" class="iw_table_row">
-            <td id="iw-icon" class="iw_table_icon"></td>
-            <td id="iw-url"></td>
-          </tr>
-          <tr id="iw-address-row" class="iw_table_row">
-            <td class="iw_attribute_name">Address:</td>
-            <td id="iw-address"></td>
-          </tr>
-          <tr id="iw-phone-row" class="iw_table_row">
-            <td class="iw_attribute_name">Telephone:</td>
-            <td id="iw-phone"></td>
-          </tr>
-          <tr id="iw-rating-row" class="iw_table_row">
-            <td class="iw_attribute_name">Rating:</td>
-            <td id="iw-rating"></td>
-          </tr>
-          <tr id="iw-website-row" class="iw_table_row">
-            <td class="iw_attribute_name">Website:</td>
-            <td id="iw-website"></td>
-          </tr>
-        </table>
-      </div>
-</body> 
+</body>
 
 </html>
