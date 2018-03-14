@@ -59,6 +59,18 @@ var map, places, infoWindow;
           zoom: 5
         }
       };
+      
+      /* added  type selector */
+      var selectedType = {
+          
+      };
+      
+      /* Added City Selector */
+      
+      var city = {
+          
+      };
+      
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -104,11 +116,13 @@ var map, places, infoWindow;
         }
       }
 
-      // Search for hotels in the selected city, within the viewport of the map.
+      // Search for hotels in the selected city, within the viewport of the map. (Original Function)
+      // Edited to Search For selected type from dropdown menu.*****
       function search() {
+        var selectedType = document.getElementById('selecttype').value;
         var search = {
           bounds: map.getBounds(),
-          types: ['lodging']
+          types: [selectedType]
         };
 
         places.nearbySearch(search, function(results, status) {
