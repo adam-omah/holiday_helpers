@@ -20,7 +20,6 @@
   <!-- Google Maps Scripts -->
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfKCpZ0gSdCrd_QdEURuCbAdseRxGU-Ao&libraries=places&callback=initMap" async defer></script>
-  <script src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyDfKCpZ0gSdCrd_QdEURuCbAdseRxGU-Ao"></script>
 
   <!-- /Google Maps Scripts/ -->
 
@@ -53,7 +52,9 @@
   </div>
 
   <div id="map"></div>
-
+  <div id="photo-section">
+    <div id="photo"></div>
+  </div>
   <div id="listing">
     <table id="resultsTable">
       <tbody id="results"></tbody>
@@ -84,8 +85,8 @@
           <td id="iw-website"></td>
         </tr>
         <tr id="iw-photo-row" class="iw_photo_row">
-          <td class="iw_attribute_name">Photo:<img id="iw-photo"></td>
-          
+          <td class="iw_attribute_name">Photo:</td>
+          <td id="iw-photo"></td>
         </tr>
       </table>
     </div>

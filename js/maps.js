@@ -97,14 +97,15 @@ function initMap() {
   places = new google.maps.places.PlacesService(map);
 
   autocomplete.addListener('place_changed', onPlaceChanged);
-  
-  
+
+
   // Add a DOM event listener to react when the user selects a country.
   document.getElementById('selecttype').addEventListener(
     'change', typeChanged);
+
 }
 
-function typeChanged () {
+function typeChanged() {
   var selectedType = document.getElementById('selecttype').value;
   console.log(selectedType);
   clearResults();
@@ -223,6 +224,8 @@ function showInfoWindow() {
         return;
       }
       infoWindow.open(map, marker);
+      var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      console.log(photo);
       buildIWContent(place);
     });
 }
@@ -234,7 +237,16 @@ function buildIWContent(place) {
   document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
     '">' + place.name + '</a></b>';
   document.getElementById('iw-address').textContent = place.vicinity;
+  
+  // place photo, logging to test.
+  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  console.log(photo);
+  
 
+    document.getElementById('photo-section').style.display = '';
+    document.getElementById('photo').src =
+      photo;
+  
   if (place.formatted_phone_number) {
     document.getElementById('iw-phone-row').style.display = '';
     document.getElementById('iw-phone').textContent =
@@ -247,6 +259,8 @@ function buildIWContent(place) {
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
   // to indicate the rating the hotel has earned, and a white star ('&#10025;')
   // for the rating points not achieved.
+
+
   if (place.rating) {
     var ratingHtml = '';
     for (var i = 0; i < 5; i++) {
@@ -278,13 +292,5 @@ function buildIWContent(place) {
   }
   else {
     document.getElementById('iw-website-row').style.display = 'none';
-  }
-  if (place.photo_reference) {
-    document.getElementById('iw-photo-row').style.display = '';
-    document.getElementById('iw-photo').textContent =
-      place.photo_reference;
-  }
-  else {
-    document.getElementById('iw-photo-row').style.display = 'none';
   }
 }
