@@ -232,21 +232,28 @@ function showInfoWindow() {
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
-  document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+  document.getElementById('iw-icon').innerHTML = '<img class="typeIcon" ' +
     'src="' + place.icon + '"/>';
   document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
     '">' + place.name + '</a></b>';
   document.getElementById('iw-address').textContent = place.vicinity;
-  
-  // place photo, logging to test.
+
+  // place photo, logging to test. Adds photo to photo section on clicked item.
+    
   var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photoinfo1 = place.photos[0].html_attributions;
   console.log(photo);
+  console.log(photoinfo1);
+  
+  var img = document.createElement("IMG");
+  img.src = photo;
+  document.getElementById('photo').appendChild(img);
+  console.log(img);
+  var attributes = document.createElement("a");
+  attributes.textContent = photoinfo1;
+  document.getElementById('photo').appendChild(attributes);
   
 
-    document.getElementById('photo-section').style.display = '';
-    document.getElementById('photo').src =
-      photo;
-  
   if (place.formatted_phone_number) {
     document.getElementById('iw-phone-row').style.display = '';
     document.getElementById('iw-phone').textContent =
