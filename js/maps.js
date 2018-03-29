@@ -1,7 +1,6 @@
 var map, places, infoWindow;
 var markers = [];
 var autocomplete;
-var countryRestrict = { 'country': 'us' };
 var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
 var hostnameRegexp = new RegExp('^https?://.+?/');
 
@@ -119,7 +118,7 @@ function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
     map.panTo(place.geometry.location);
-    map.setZoom(10);
+    map.setZoom(15);
     search();
   }
   else {
@@ -224,11 +223,31 @@ function showInfoWindow() {
         return;
       }
       infoWindow.open(map, marker);
-      var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-      console.log(photo);
       buildIWContent(place);
+      showPhotos(place);
     });
 }
+
+function showPhotos(place){
+    // place photo, logging to test. Adds photo to photo section on clicked item.
+    
+  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photoinfo1 = place.photos[0].html_attributions;
+  console.log(photo);
+  console.log(photoinfo1);
+  console.log(typeof "photoinfo1");
+  console.log(typeof "photo");
+  
+  var photo1 = document.getElementById("photo");
+  var img = document.createElement("IMG");
+  img.src = photo;
+  photo1.removeChild(photo1.firstChild);
+  photo1.appendChild(img);
+  console.log(img);
+  document.getElementById("photoinfo").innerHTML = photoinfo1;
+  
+}
+
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
@@ -237,22 +256,6 @@ function buildIWContent(place) {
   document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
     '">' + place.name + '</a></b>';
   document.getElementById('iw-address').textContent = place.vicinity;
-
-  // place photo, logging to test. Adds photo to photo section on clicked item.
-    
-  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photoinfo1 = place.photos[0].html_attributions;
-  console.log(photo);
-  console.log(photoinfo1);
-  
-  var img = document.createElement("IMG");
-  img.src = photo;
-  document.getElementById('photo').appendChild(img);
-  console.log(img);
-  var attributes = document.createElement("a");
-  attributes.textContent = photoinfo1;
-  document.getElementById('photo').appendChild(attributes);
-  
 
   if (place.formatted_phone_number) {
     document.getElementById('iw-phone-row').style.display = '';
