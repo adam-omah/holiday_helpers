@@ -1,5 +1,5 @@
 #map {
-        height: 600px;
+        height: 450px;
         width: 100vw;
       }
       
@@ -23,6 +23,6 @@
 }
 
 #photo-row img{
-    height:300px;
-    width:24.5vw;
+    height:280px;
+    width:24.72vw;
 }
