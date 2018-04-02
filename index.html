@@ -35,9 +35,10 @@
 
 <body>
 
-
-  <div id="controls2">
-    <select id="selecttype">
+  <div class="container-fluid">
+    <div class="row">
+      <div id="controls2">
+        <select id="selecttype">
         <option value="lodging">Accomodation</option>
         <option value="bar">Bar</option>
         <option value="cafe">Cafe</option>
@@ -45,52 +46,79 @@
         <option value="night_club">Night Clubs</option>
         <option value="restaurant">Restaurant</option>
       </select>
-  </div>
+      </div>
 
-  <div id="locationField">
-    <input id="autocomplete" placeholder="Enter a city" type="text" />
-  </div>
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
 
-  <div id="map"></div>
-  <div id="photo-section">
-    <div id="photo"><div id="default1"></div></div>
-    <div>Photo Credits:<span id="photoinfo"></span></div>
-  </div>
-  <div id="listing">
-    <table id="resultsTable">
-      <tbody id="results"></tbody>
-    </table>
-  </div>
+      <div id="map"></div>
+    </div>
 
-  <div style="display: none">
-    <div id="info-content">
-      <table>
-        <tr id="iw-url-row" class="iw_table_row">
-          <td id="iw-icon" class="iw_table_icon"></td>
-          <td id="iw-url"></td>
-        </tr>
-        <tr id="iw-address-row" class="iw_table_row">
-          <td class="iw_attribute_name">Address:</td>
-          <td id="iw-address"></td>
-        </tr>
-        <tr id="iw-phone-row" class="iw_table_row">
-          <td class="iw_attribute_name">Telephone:</td>
-          <td id="iw-phone"></td>
-        </tr>
-        <tr id="iw-rating-row" class="iw_table_row">
-          <td class="iw_attribute_name">Rating:</td>
-          <td id="iw-rating"></td>
-        </tr>
-        <tr id="iw-website-row" class="iw_table_row">
-          <td class="iw_attribute_name">Website:</td>
-          <td id="iw-website"></td>
-        </tr>
-        <tr id="iw-photo-row" class="iw_photo_row">
-          <td class="iw_attribute_name">Photo:</td>
-          <td id="iw-photo"></td>
-        </tr>
+    <div id="photo-row" class="row">
+      <div id="photo-section" class="col-xs-3">
+        <div id="photo">
+          <div id="default1"></div>
+        </div>
+        <div>Photo Credits:<span id="photoinfo"></span></div>
+      </div>
+      <div id="photo-section2" class="col-xs-3">
+        <div id="photo2">
+          <div id="default2" class="col-xs-3"></div>
+        </div>
+        <div>Photo Credits:<span id="photoinfo2"></span></div>
+      </div>
+      <div id="photo-section3" class="col-xs-3">
+        <div id="photo3">
+          <div id="default3"></div>
+        </div>
+        <div>Photo Credits:<span id="photoinfo3"></span></div>
+      </div>
+      <div id="photo-section4" class="col-xs-3">
+        <div id="photo4">
+          <div id="default4"></div>
+        </div>
+        <div>Photo Credits:<span id="photoinfo4"></span></div>
+      </div>
+    </div>
+
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
       </table>
     </div>
+
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+          <tr id="iw-photo-row" class="iw_photo_row">
+            <td class="iw_attribute_name">Photo:</td>
+            <td id="iw-photo"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
 </body>
 
 </html>

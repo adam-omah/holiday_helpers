@@ -4,77 +4,12 @@ var autocomplete;
 var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
 var hostnameRegexp = new RegExp('^https?://.+?/');
 
-var countries = {
-  'au': {
-    center: { lat: -25.3, lng: 133.8 },
-    zoom: 4
-  },
-  'br': {
-    center: { lat: -14.2, lng: -51.9 },
-    zoom: 3
-  },
-  'ca': {
-    center: { lat: 62, lng: -110.0 },
-    zoom: 3
-  },
-  'fr': {
-    center: { lat: 46.2, lng: 2.2 },
-    zoom: 5
-  },
-  'de': {
-    center: { lat: 51.2, lng: 10.4 },
-    zoom: 5
-  },
-  'mx': {
-    center: { lat: 23.6, lng: -102.5 },
-    zoom: 4
-  },
-  'nz': {
-    center: { lat: -40.9, lng: 174.9 },
-    zoom: 5
-  },
-  'it': {
-    center: { lat: 41.9, lng: 12.6 },
-    zoom: 5
-  },
-  'za': {
-    center: { lat: -30.6, lng: 22.9 },
-    zoom: 5
-  },
-  'es': {
-    center: { lat: 40.5, lng: -3.7 },
-    zoom: 5
-  },
-  'pt': {
-    center: { lat: 39.4, lng: -8.2 },
-    zoom: 6
-  },
-  'us': {
-    center: { lat: 37.1, lng: -95.7 },
-    zoom: 3
-  },
-  'uk': {
-    center: { lat: 54.8, lng: -4.6 },
-    zoom: 5
-  }
-};
-
-/* added  type selector */
-var selectedType = {
-
-};
-
-/* Added City Selector */
-
-var city = {
-
-};
 
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: countries['us'].zoom,
-    center: countries['us'].center,
+    zoom: 3,
+    center: { lat: 37.1, lng: -95.7 },
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
@@ -86,7 +21,7 @@ function initMap() {
   });
 
   // Create the autocomplete object and associate it with the UI input control.
-  // Restrict the search to the default country, and to place type "cities".
+  // Restrict the search to to place type "cities".
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */
     (
@@ -98,7 +33,7 @@ function initMap() {
   autocomplete.addListener('place_changed', onPlaceChanged);
 
 
-  // Add a DOM event listener to react when the user selects a country.
+  // Add a DOM event listener to react when the user selects a new type of recommendations.
   document.getElementById('selecttype').addEventListener(
     'change', typeChanged);
 
@@ -172,8 +107,7 @@ function clearMarkers() {
   markers = [];
 }
 
-// Set the country restriction based on user input.
-// Also center and zoom the map on the given country.
+// places markers, adds results to a table.
 
 function dropMarker(i) {
   return function() {
@@ -224,28 +158,81 @@ function showInfoWindow() {
       }
       infoWindow.open(map, marker);
       buildIWContent(place);
+      removePhotos(place);
       showPhotos(place);
     });
 }
 
-function showPhotos(place){
-    // place photo, logging to test. Adds photo to photo section on clicked item.
-    
+function removePhotos(place) {
+  var photos1 = document.getElementById("photo");
+  var photos2 = document.getElementById("photo2");
+  var photos3 = document.getElementById("photo3");
+  var photos4 = document.getElementById("photo4");
+
+  if (photos1.hasChildNodes()) {
+    photos1.removeChild(photos1.firstChild);
+  }
+  if (photos2.hasChildNodes()) {
+    photos2.removeChild(photos2.firstChild);
+  }
+  if (photos3.hasChildNodes()) {
+    photos3.removeChild(photos3.firstChild);
+  }
+  if (photos4.hasChildNodes()) {
+    photos4.removeChild(photos4.firstChild);
+  }
+}
+
+function showPhotos(place) {
+  // place photo, logging to test. Adds photo to photo section on clicked item.
+
+  var photos1 = document.getElementById("photo");
+  var photos2 = document.getElementById("photo2");
+  var photos3 = document.getElementById("photo3");
+  var photos4 = document.getElementById("photo4");
+
   var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo4 = place.photos[3].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
   var photoinfo1 = place.photos[0].html_attributions;
+  var photoinfo2 = place.photos[1].html_attributions;
+  var photoinfo3 = place.photos[2].html_attributions;
+  var photoinfo4 = place.photos[3].html_attributions;
+
   console.log(photo);
   console.log(photoinfo1);
   console.log(typeof "photoinfo1");
   console.log(typeof "photo");
-  
-  var photo1 = document.getElementById("photo");
+
+
   var img = document.createElement("IMG");
   img.src = photo;
-  photo1.removeChild(photo1.firstChild);
-  photo1.appendChild(img);
+
+  photos1.appendChild(img);
   console.log(img);
   document.getElementById("photoinfo").innerHTML = photoinfo1;
-  
+
+
+  var img2 = document.createElement("IMG");
+  img2.src = photo2;
+  photos2.appendChild(img2);
+  console.log(img2);
+  document.getElementById("photoinfo2").innerHTML = photoinfo2;
+
+
+  var img3 = document.createElement("IMG");
+  img3.src = photo3;
+  photos3.appendChild(img3);
+  console.log(img3);
+  document.getElementById("photoinfo3").innerHTML = photoinfo3;
+
+
+  var img4 = document.createElement("IMG");
+  img4.src = photo4;
+  photos4.appendChild(img4);
+  console.log(img4);
+  document.getElementById("photoinfo4").innerHTML = photoinfo4;
 }
 
 
