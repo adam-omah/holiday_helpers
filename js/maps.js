@@ -158,39 +158,13 @@ function showInfoWindow() {
       }
       infoWindow.open(map, marker);
       buildIWContent(place);
-      removePhotos(place);
       showPhotos(place);
     });
 }
 
-function removePhotos(place) {
-  var photos1 = document.getElementById("photo");
-  var photos2 = document.getElementById("photo2");
-  var photos3 = document.getElementById("photo3");
-  var photos4 = document.getElementById("photo4");
-
-  if (photos1.hasChildNodes()) {
-    photos1.removeChild(photos1.firstChild);
-  }
-  if (photos2.hasChildNodes()) {
-    photos2.removeChild(photos2.firstChild);
-  }
-  if (photos3.hasChildNodes()) {
-    photos3.removeChild(photos3.firstChild);
-  }
-  if (photos4.hasChildNodes()) {
-    photos4.removeChild(photos4.firstChild);
-  }
-}
-
-function showPhotos(place) {
-  // place photo, logging to test. Adds photo to photo section on clicked item.
-
-  var photos1 = document.getElementById("photo");
-  var photos2 = document.getElementById("photo2");
-  var photos3 = document.getElementById("photo3");
-  var photos4 = document.getElementById("photo4");
-
+function showPhotos(place){
+    // place photo, logging to test. Adds photo to photo section on clicked item.
+    
   var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
   var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
   var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
@@ -199,39 +173,29 @@ function showPhotos(place) {
   var photoinfo2 = place.photos[1].html_attributions;
   var photoinfo3 = place.photos[2].html_attributions;
   var photoinfo4 = place.photos[3].html_attributions;
-
+  var photos1 = document.getElementById("photo");
+  var photos2 = document.getElementById("photo2");
+  var photos3 = document.getElementById("photo3");
+  var photos4 = document.getElementById("photo4");
   console.log(photo);
   console.log(photoinfo1);
   console.log(typeof "photoinfo1");
   console.log(typeof "photo");
-
-
-  var img = document.createElement("IMG");
-  img.src = photo;
-
-  photos1.appendChild(img);
-  console.log(img);
+  
+  
+  photos1.src = photo;
   document.getElementById("photoinfo").innerHTML = photoinfo1;
-
-
-  var img2 = document.createElement("IMG");
-  img2.src = photo2;
-  photos2.appendChild(img2);
-  console.log(img2);
+  
+  
+  photos2.src = photo2;
   document.getElementById("photoinfo2").innerHTML = photoinfo2;
-
-
-  var img3 = document.createElement("IMG");
-  img3.src = photo3;
-  photos3.appendChild(img3);
-  console.log(img3);
+  
+  
+  photos3.src = photo3;
   document.getElementById("photoinfo3").innerHTML = photoinfo3;
-
-
-  var img4 = document.createElement("IMG");
-  img4.src = photo4;
-  photos4.appendChild(img4);
-  console.log(img4);
+  
+  
+  photos4.src = photo4;
   document.getElementById("photoinfo4").innerHTML = photoinfo4;
 }
 
