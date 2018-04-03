@@ -1,5 +1,5 @@
 #map {
-        height: 450px;
+        height: 65vh;
         width: 100vw;
       }
       
@@ -12,7 +12,8 @@
     z-index: 99;
     margin-top: 10px;
     float: left;
-    margin-left: 1px;
+    margin-left: 10px;
+    font-size: 20px;
 }
 
 #controls2 {
@@ -20,9 +21,19 @@
     margin-left: 80vw;
     margin-top: 10px;
     z-index: 99;
+    font-size: 24px;
 }
 
 #photo-row img{
-    height:280px;
-    width:24.72vw;
+    height:31.9vh;
+    width:24.7273vw;
+}
+
+.photo-credits {
+    text-overflow: clip;
+    font-size: 12px;
+}
+
+body {
+    background-color:#5cdae5;
 }

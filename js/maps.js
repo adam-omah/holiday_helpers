@@ -114,7 +114,8 @@ function dropMarker(i) {
 
 
 // Get the place details for a hotel. Show the information in an info window,
-// anchored on the marker for the hotel that the user selected.
+// anchored on the marker that the user selected.
+// Populates Photo's area when Marker is clicked if photos are present.
 function showInfoWindow() {
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id },
@@ -128,9 +129,9 @@ function showInfoWindow() {
     });
 }
 
-function showPhotos(place){
-    // place photo, logging to test. Adds photo to photo section on clicked item.
-    
+function showPhotos(place) {
+  // place photo, logging to test. Adds photo to photo section on clicked item.
+
   var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
   var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
   var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
@@ -147,20 +148,20 @@ function showPhotos(place){
   console.log(photoinfo1);
   console.log(typeof "photoinfo1");
   console.log(typeof "photo");
-  
-  
+
+
   photos1.src = photo;
   document.getElementById("photoinfo").innerHTML = photoinfo1;
-  
-  
+
+
   photos2.src = photo2;
   document.getElementById("photoinfo2").innerHTML = photoinfo2;
-  
-  
+
+
   photos3.src = photo3;
   document.getElementById("photoinfo3").innerHTML = photoinfo3;
-  
-  
+
+
   photos4.src = photo4;
   document.getElementById("photoinfo4").innerHTML = photoinfo4;
 }
