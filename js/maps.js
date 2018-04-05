@@ -53,6 +53,7 @@ function onPlaceChanged() {
   if (place.geometry) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
+    console.log("results1");
     search();
   }
   else {
@@ -74,6 +75,11 @@ function search() {
   places.nearbySearch(search, function(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearMarkers();
+      console.log("results");
+      console.log(results);
+      console.log(typeof results);
+      showRecomendations(results);
+
       // Create a marker for each amenity found, and
       // assign a letter of the alphabetic to each marker icon.
       for (var i = 0; i < results.length; i++) {
@@ -90,6 +96,7 @@ function search() {
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
+
       }
     }
   });
@@ -129,42 +136,7 @@ function showInfoWindow() {
     });
 }
 
-function showPhotos(place) {
-  // place photo, logging to test. Adds photo to photo section on clicked item.
 
-  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo4 = place.photos[3].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photoinfo1 = place.photos[0].html_attributions;
-  var photoinfo2 = place.photos[1].html_attributions;
-  var photoinfo3 = place.photos[2].html_attributions;
-  var photoinfo4 = place.photos[3].html_attributions;
-  var photos1 = document.getElementById("photo");
-  var photos2 = document.getElementById("photo2");
-  var photos3 = document.getElementById("photo3");
-  var photos4 = document.getElementById("photo4");
-  console.log(photo);
-  console.log(photoinfo1);
-  console.log(typeof "photoinfo1");
-  console.log(typeof "photo");
-
-
-  photos1.src = photo;
-  document.getElementById("photoinfo").innerHTML = photoinfo1;
-
-
-  photos2.src = photo2;
-  document.getElementById("photoinfo2").innerHTML = photoinfo2;
-
-
-  photos3.src = photo3;
-  document.getElementById("photoinfo3").innerHTML = photoinfo3;
-
-
-  photos4.src = photo4;
-  document.getElementById("photoinfo4").innerHTML = photoinfo4;
-}
 
 
 // Load the place information into the HTML elements used by the info window.
@@ -221,4 +193,54 @@ function buildIWContent(place) {
   else {
     document.getElementById('iw-website-row').style.display = 'none';
   }
+}
+
+
+function showRecomendations(results) {
+  var i = 0;
+  for (i = 0; i < 4; i++) {
+    if (results[i].photos[0]) {
+      document.getElementById("recommendation" + i).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+
+      console.log(results[i]);
+    }
+  }
+}
+
+function showPhotos(place) {
+  // place photo, logging to test. Adds photo to photo section on clicked item.
+
+
+  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photo4 = place.photos[3].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+  var photoinfo1 = place.photos[0].html_attributions;
+  var photoinfo2 = place.photos[1].html_attributions;
+  var photoinfo3 = place.photos[2].html_attributions;
+  var photoinfo4 = place.photos[3].html_attributions;
+  var photos1 = document.getElementById("photo");
+  var photos2 = document.getElementById("photo2");
+  var photos3 = document.getElementById("photo3");
+  var photos4 = document.getElementById("photo4");
+  console.log(photo);
+  console.log(photoinfo1);
+  console.log(typeof "photoinfo1");
+  console.log(typeof "photo");
+
+
+  photos1.src = photo;
+  document.getElementById("photoinfo").innerHTML = photoinfo1;
+
+
+  photos2.src = photo2;
+  document.getElementById("photoinfo2").innerHTML = photoinfo2;
+
+
+  photos3.src = photo3;
+  document.getElementById("photoinfo3").innerHTML = photoinfo3;
+
+
+  photos4.src = photo4;
+  document.getElementById("photoinfo4").innerHTML = photoinfo4;
 }
