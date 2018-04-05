@@ -199,7 +199,8 @@ function buildIWContent(place) {
 function showRecomendations(results) {
   var i = 0;
   for (i = 0; i < 4; i++) {
-    if (results[i].photos[0]) {
+    if (results[i].photos) {
+      if (results[i].photos === undefined) {continue;}
       document.getElementById("recommendation" + i).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
 
       console.log(results[i]);
