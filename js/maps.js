@@ -96,7 +96,6 @@ function search() {
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
-
       }
     }
   });
@@ -144,7 +143,7 @@ function buildIWContent(place) {
   document.getElementById('iw-icon').innerHTML = '<img class="typeIcon" ' +
     'src="' + place.icon + '"/>';
   document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
-    '">' + place.name + '</a></b>';
+    '" target = "_blank" >' + place.name + '</a></b>';
   document.getElementById('iw-address').textContent = place.vicinity;
 
   if (place.formatted_phone_number) {
@@ -198,50 +197,39 @@ function buildIWContent(place) {
 
 function showRecomendations(results) {
   var i = 0;
-  for (i = 0; i < 4; i++) {
+  var c = 0;
+  for (i = 0; i < 10; i++) {
     if (results[i].photos) {
-      if (results[i].photos === undefined) {continue;}
-      document.getElementById("recommendation" + i).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-
+      if (results[i].photos === undefined) { continue; }
+      if (results[i].rating === undefined) { continue; }
+      if (results[i].rating < 4) { continue; }
+      console.log("c is" + c + "before");
+      if (c == 4) { break; }
+      document.getElementById("recommendation" + c).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      c++;
+      console.log("c is" + c);
+      console.log(results[i].rating);
       console.log(results[i]);
+      console.log(results[i].url);
     }
   }
 }
 
 function showPhotos(place) {
   // place photo, logging to test. Adds photo to photo section on clicked item.
-
-
-  var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo2 = place.photos[1].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo3 = place.photos[2].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photo4 = place.photos[3].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-  var photoinfo1 = place.photos[0].html_attributions;
-  var photoinfo2 = place.photos[1].html_attributions;
-  var photoinfo3 = place.photos[2].html_attributions;
-  var photoinfo4 = place.photos[3].html_attributions;
-  var photos1 = document.getElementById("photo");
-  var photos2 = document.getElementById("photo2");
-  var photos3 = document.getElementById("photo3");
-  var photos4 = document.getElementById("photo4");
-  console.log(photo);
-  console.log(photoinfo1);
-  console.log(typeof "photoinfo1");
-  console.log(typeof "photo");
-
-
-  photos1.src = photo;
-  document.getElementById("photoinfo").innerHTML = photoinfo1;
-
-
-  photos2.src = photo2;
-  document.getElementById("photoinfo2").innerHTML = photoinfo2;
-
-
-  photos3.src = photo3;
-  document.getElementById("photoinfo3").innerHTML = photoinfo3;
-
-
-  photos4.src = photo4;
-  document.getElementById("photoinfo4").innerHTML = photoinfo4;
+  if (place.photos) {
+    var i = 0;
+    for (i = 0; i < 4; i++) {
+      document.getElementById("photo" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      document.getElementById("photoinfo" + i).innerHTML = place.photos[i].html_attributions;
+      console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
+      console.log(typeof (place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
+    }
+  }
+  else {
+    for (i = 0; i < 4; i++) {
+    document.getElementById("photo" + i).src = "https://holiday-helper-adamomah.c9users.io/assests/hhbg1.png";
+    document.getElementById("photoinfo" + i).innerHTML = "";
+    }
+  }
 }
