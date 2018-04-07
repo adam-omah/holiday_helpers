@@ -39,17 +39,29 @@
     <div class="row">
       <div id="controls2">
         <select id="selecttype">
-        <option value="lodging">Accomodation</option>
-        <option value="bar">Bar</option>
-        <option value="cafe">Cafe</option>
+        <option value="point_of_interest">Interesting Places</option>
         <option value="museum">Museum</option>
+        <option value="zoo">Zoo</option>
+        <option value="amusement_park">Amusement Park</option>
+        <option value="aquarium">Aquarium</option>
+        <option value="shopping_mall">Shopping Centre</option>
+        <option value="cafe">Cafe</option>
         <option value="night_club">Night Clubs</option>
-        <option value="restaurant">Restaurant</option>
+        <option value="bar">Bar</option>
+        
       </select>
-        <div class="select_arrow">
+        <div>
+          <p style="font-size : 10px;">Accomodation?
+            <input type="checkbox" id="lodgingsearch" onclick="searchForLodging();">
+          </p>
+        </div>
+        <div>
+          <p style="font-size : 10px;">
+            Restaurant?
+            <input type="checkbox" id="restaurantsearch" onclick="searchForFood();">
+          </p>
         </div>
       </div>
-
       <div id="locationField">
         <input id="autocomplete" placeholder="Enter a city" type="text" />
       </div>
@@ -62,25 +74,25 @@
         <div>
           <img id="recommendation0" src="assests/hhbg1.png">
         </div>
-        
+
       </div>
       <div id="recommendation-section1" class="col-xs-3">
         <div>
           <img id="recommendation1" src="assests/hhbg1.png">
         </div>
-        
+
       </div>
       <div id="recommendation-section2" class="col-xs-3">
         <div>
           <img id="recommendation2" src="assests/hhbg1.png">
         </div>
-        
+
       </div>
       <div id="recommendation-section3" class="col-xs-3">
         <div>
           <img id="recommendation3" src="assests/hhbg1.png">
         </div>
-        
+
       </div>
     </div>
 

@@ -5,7 +5,6 @@ var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/i
 var hostnameRegexp = new RegExp('^https?://.+?/');
 
 
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 3,
@@ -198,7 +197,9 @@ function buildIWContent(place) {
 function showRecomendations(results) {
   var i = 0;
   var c = 0;
+  
   for (i = 0; i < 10; i++) {
+    if (results === undefined) { break;}
     if (results[i].photos) {
       if (results[i].photos === undefined) { continue; }
       if (results[i].rating === undefined) { continue; }
@@ -220,6 +221,7 @@ function showPhotos(place) {
   if (place.photos) {
     var i = 0;
     for (i = 0; i < 4; i++) {
+      if (place.photos[i] === undefined) { continue; }
       document.getElementById("photo" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
       document.getElementById("photoinfo" + i).innerHTML = place.photos[i].html_attributions;
       console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
@@ -232,4 +234,68 @@ function showPhotos(place) {
     document.getElementById("photoinfo" + i).innerHTML = "";
     }
   }
+}
+
+function searchForLodging() {
+  if (document.getElementById('lodgingsearch').checked) 
+  {
+  var search = {
+    bounds: map.getBounds(),
+    types: ['lodging']
+  };
+
+  places.nearbySearch(search, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+      // Create a marker for each amenity found
+      for (var i = 0; i < results.length; i++) {
+        var markerIcon = 'assests/Hotels.png';
+        // Use marker animation to drop the icons incrementally on the map.
+        markers[i] = new google.maps.Marker({
+          position: results[i].geometry.location,
+          animation: google.maps.Animation.DROP,
+          icon: markerIcon
+        });
+        markers[i].placeResult = results[i];
+        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+        setTimeout(dropMarker(i), i * 100);
+      }
+    }
+  });
+} else {
+    clearMarkers();
+}
+
+}
+
+function searchForFood() {
+  if (document.getElementById('restaurantsearch').checked) 
+  {
+  var search = {
+    bounds: map.getBounds(),
+    types: ['restaurant']
+  };
+
+  places.nearbySearch(search, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+      // Create a marker for each Restaurant found
+      for (var i = 0; i < results.length; i++) {
+        var markerIcon = 'assests/Restaurants.png';
+        // Use marker animation to drop the icons incrementally on the map.
+        markers[i] = new google.maps.Marker({
+          position: results[i].geometry.location,
+          animation: google.maps.Animation.DROP,
+          icon: markerIcon
+        });
+        markers[i].placeResult = results[i];
+        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+        setTimeout(dropMarker(i), i * 100);
+      }
+    }
+  });
+} else {
+    clearMarkers();
+}
+
 }
