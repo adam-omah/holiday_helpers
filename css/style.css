@@ -86,3 +86,14 @@ body {
 img {
     border: 1px solid transparent;
 }
+
+#initialwindow {
+    position: absolute;
+    background: #5fdde8;
+    margin-left: 16.5vw;
+    margin-top: 20vh;
+    padding: 40px;
+    border-radius: 100px;
+    color: #254088;
+    text-align: center;
+}

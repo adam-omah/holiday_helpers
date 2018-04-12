@@ -53,6 +53,7 @@ function onPlaceChanged() {
     map.setZoom(15);
     console.log("results1");
     document.getElementById('controls2').style.display = "block";
+    document.getElementById('initialwindow').style.display = "none";
     search();
   }
   else {
@@ -279,6 +280,9 @@ function searchForLodging() {
   else {
     clearMarkers();
   }
+  if (document.getElementById('lodgingsearch').unchecked) {
+    clearMarkers();
+  }
 
 }
 
@@ -310,7 +314,8 @@ function searchForFood() {
   }
   else {
     clearMarkers();
+  }
+  if (document.getElementById('restaurantsearch').unchecked) {
     clearMarkers();
   }
-
 }
