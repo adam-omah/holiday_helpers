@@ -10,7 +10,6 @@ function initMap() {
     zoom: 3,
     center: { lat: 37.1, lng: -95.7 },
     mapTypeControl: false,
-    panControl: false,
     zoomControl: false,
     streetViewControl: false
   });
@@ -53,6 +52,7 @@ function onPlaceChanged() {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     console.log("results1");
+    document.getElementById('controls2').style.display = "block";
     search();
   }
   else {
@@ -197,9 +197,9 @@ function buildIWContent(place) {
 function showRecomendations(results) {
   var i = 0;
   var c = 0;
-  
+
   for (i = 0; i < 10; i++) {
-    if (results === undefined) { break;}
+    if (results === undefined) { break; }
     if (results[i].photos) {
       if (results[i].photos === undefined) { continue; }
       if (results[i].rating === undefined) { continue; }
@@ -223,79 +223,83 @@ function showPhotos(place) {
     for (i = 0; i < 4; i++) {
       if (place.photos[i] === undefined) { continue; }
       document.getElementById("photo" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-      document.getElementById("photoinfo" + i).innerHTML = place.photos[i].html_attributions;
       console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
-      console.log(typeof (place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
+      console.log(typeof(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
+
+      document.getElementById('controls2').style.marginLeft = "32vw";
+      document.getElementById('map').style.width = "53.3vw";
+      document.getElementById('photo-section0').style.display = "block";
+      document.getElementById('photo-section1').style.display = "block";
+
     }
   }
   else {
     for (i = 0; i < 4; i++) {
-    document.getElementById("photo" + i).src = "https://holiday-helper-adamomah.c9users.io/assests/hhbg1.png";
-    document.getElementById("photoinfo" + i).innerHTML = "";
+      document.getElementById("photo" + i).src = "https://holiday-helper-adamomah.c9users.io/assests/hhbg1.png";
     }
   }
 }
 
 function searchForLodging() {
-  if (document.getElementById('lodgingsearch').checked) 
-  {
-  var search = {
-    bounds: map.getBounds(),
-    types: ['lodging']
-  };
+  if (document.getElementById('lodgingsearch').checked) {
+    var search = {
+      bounds: map.getBounds(),
+      types: ['lodging']
+    };
 
-  places.nearbySearch(search, function(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    places.nearbySearch(search, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-      // Create a marker for each amenity found
-      for (var i = 0; i < results.length; i++) {
-        var markerIcon = 'assests/Hotels.png';
-        // Use marker animation to drop the icons incrementally on the map.
-        markers[i] = new google.maps.Marker({
-          position: results[i].geometry.location,
-          animation: google.maps.Animation.DROP,
-          icon: markerIcon
-        });
-        markers[i].placeResult = results[i];
-        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-        setTimeout(dropMarker(i), i * 100);
+        // Create a marker for each amenity found
+        for (var i = 0; i < results.length; i++) {
+          var markerIcon = 'assests/Hotels.png';
+          // Use marker animation to drop the icons incrementally on the map.
+          markers[i] = new google.maps.Marker({
+            position: results[i].geometry.location,
+            animation: google.maps.Animation.DROP,
+            icon: markerIcon
+          });
+          markers[i].placeResult = results[i];
+          google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+          setTimeout(dropMarker(i), i * 100);
+        }
       }
-    }
-  });
-} else {
+    });
+  }
+  else {
     clearMarkers();
-}
+  }
 
 }
 
 function searchForFood() {
-  if (document.getElementById('restaurantsearch').checked) 
-  {
-  var search = {
-    bounds: map.getBounds(),
-    types: ['restaurant']
-  };
+  if (document.getElementById('restaurantsearch').checked) {
+    var search = {
+      bounds: map.getBounds(),
+      types: ['restaurant']
+    };
 
-  places.nearbySearch(search, function(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    places.nearbySearch(search, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-      // Create a marker for each Restaurant found
-      for (var i = 0; i < results.length; i++) {
-        var markerIcon = 'assests/Restaurants.png';
-        // Use marker animation to drop the icons incrementally on the map.
-        markers[i] = new google.maps.Marker({
-          position: results[i].geometry.location,
-          animation: google.maps.Animation.DROP,
-          icon: markerIcon
-        });
-        markers[i].placeResult = results[i];
-        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-        setTimeout(dropMarker(i), i * 100);
+        // Create a marker for each Restaurant found
+        for (var i = 0; i < results.length; i++) {
+          var markerIcon = 'assests/Restaurants.png';
+          // Use marker animation to drop the icons incrementally on the map.
+          markers[i] = new google.maps.Marker({
+            position: results[i].geometry.location,
+            animation: google.maps.Animation.DROP,
+            icon: markerIcon
+          });
+          markers[i].placeResult = results[i];
+          google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+          setTimeout(dropMarker(i), i * 100);
+        }
       }
-    }
-  });
-} else {
+    });
+  }
+  else {
     clearMarkers();
-}
+  }
 
 }
