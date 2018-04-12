@@ -197,6 +197,7 @@ function buildIWContent(place) {
 function showRecomendations(results) {
   var i = 0;
   var c = 0;
+  var d = 0 ;
 
   for (i = 0; i < 10; i++) {
     if (results === undefined) { break; }
@@ -207,11 +208,20 @@ function showRecomendations(results) {
       console.log("c is" + c + "before");
       if (c == 4) { break; }
       document.getElementById("recommendation" + c).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      console.log(results[i]);
+      places.getDetails({ placeId: results[i].place_id },
+        function(place, status) {
+          if (status !== google.maps.places.PlacesServiceStatus.OK) {
+            return;
+          }
+          document.getElementById("recommendationlink" + d).href = place.website;
+          console.log(place);
+          console.log(place.website);
+          console.log(d);
+          d++;
+        });
       c++;
       console.log("c is" + c);
-      console.log(results[i].rating);
-      console.log(results[i]);
-      console.log(results[i].url);
     }
   }
 }
@@ -299,6 +309,7 @@ function searchForFood() {
     });
   }
   else {
+    clearMarkers();
     clearMarkers();
   }
 
