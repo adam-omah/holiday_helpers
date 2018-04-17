@@ -253,6 +253,7 @@ function showPhotos(place) {
 
 function searchForLodging() {
   if (document.getElementById('lodgingsearch').checked) {
+    clearMarkers();
     var search = {
       bounds: map.getBounds(),
       types: ['lodging']
@@ -288,6 +289,7 @@ function searchForLodging() {
 
 function searchForFood() {
   if (document.getElementById('restaurantsearch').checked) {
+    clearMarkers();
     var search = {
       bounds: map.getBounds(),
       types: ['restaurant']
