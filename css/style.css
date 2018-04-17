@@ -121,10 +121,24 @@ img {
     }
 
     #controls2 {
-        margin-left: 65vw;
+        margin-left: 67vw;
     }
-    
+
     #initialwindow {
         font-size: 1rem;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #controls2 {
+        margin-left: 3vw;
+        margin-top: 7vh;
+        font-size: 16px;
+    }
+    #initialwindow {
+        font-size: 1rem;
+        margin-left: 0px;
+        margin-top: 44px;
     }
 }
