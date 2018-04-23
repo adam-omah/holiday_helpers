@@ -52,7 +52,7 @@ function onPlaceChanged() {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     console.log("results1");
-    document.getElementById('controls2').style.display = "block";
+    document.getElementById('controls2').style.display = "contents";
     document.getElementById('initialwindow').style.display = "none";
     search();
   }
@@ -94,7 +94,7 @@ function search() {
         // If the user clicks a marker, show the details of that marker
         // in an info window.
         markers[i].placeResult = results[i];
-        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+        google.maps.event.addListener(markers[i], 'click', showInfo);
         setTimeout(dropMarker(i), i * 100);
       }
     }
@@ -122,7 +122,7 @@ function dropMarker(i) {
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker that the user selected.
 // Populates Photo's area when Marker is clicked if photos are present.
-function showInfoWindow() {
+function showInfo() {
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id },
     function(place, status) {
@@ -130,8 +130,10 @@ function showInfoWindow() {
         return;
       }
       infoWindow.open(map, marker);
+      document.getElementById('info-section').style.display = "block";
       buildIWContent(place);
       showPhotos(place);
+      buildISContent(place);
     });
 }
 
@@ -154,10 +156,6 @@ function buildIWContent(place) {
   else {
     document.getElementById('iw-phone-row').style.display = 'none';
   }
-
-  // Assign a five-star rating to the hotel, using a black star ('&#10029;')
-  // to indicate the rating the hotel has earned, and a white star ('&#10025;')
-  // for the rating points not achieved.
 
 
   if (place.rating) {
@@ -200,8 +198,9 @@ function showRecomendations(results) {
   var c = 0;
   var d = 0 ;
 
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < 20; i++) {
     if (results === undefined) { break; }
+    if (results.photos === 1) {break;}
     if (results[i].photos) {
       if (results[i].photos === undefined) { continue; }
       if (results[i].rating === undefined) { continue; }
@@ -234,14 +233,17 @@ function showPhotos(place) {
     for (i = 0; i < 4; i++) {
       if (place.photos[i] === undefined) { continue; }
       document.getElementById("photo" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      document.getElementById("photoa" + i).href = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
       console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
       console.log(typeof(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
 
       document.getElementById('controls2').style.marginLeft = "32vw";
       document.getElementById('map').style.width = "53.3vw";
       document.getElementById('photo-section0').style.display = "block";
-      document.getElementById('photo-section1').style.display = "block";
-
+      if (i < 1) {
+        document.getElementById("photob0" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+        document.getElementById("photob" + i).href = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+      }
     }
   }
   else {
@@ -253,7 +255,6 @@ function showPhotos(place) {
 
 function searchForLodging() {
   if (document.getElementById('lodgingsearch').checked) {
-    clearMarkers();
     var search = {
       bounds: map.getBounds(),
       types: ['lodging']
@@ -272,7 +273,7 @@ function searchForLodging() {
             icon: markerIcon
           });
           markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+          google.maps.event.addListener(markers[i], 'click', showInfo);
           setTimeout(dropMarker(i), i * 100);
         }
       }
@@ -281,7 +282,7 @@ function searchForLodging() {
   else {
     clearMarkers();
   }
-  if (document.getElementById('lodgingsearch').unchecked) {
+  if (document.getElementById('restaurantsearch').unchecked) {
     clearMarkers();
   }
 
@@ -289,7 +290,6 @@ function searchForLodging() {
 
 function searchForFood() {
   if (document.getElementById('restaurantsearch').checked) {
-    clearMarkers();
     var search = {
       bounds: map.getBounds(),
       types: ['restaurant']
@@ -308,7 +308,7 @@ function searchForFood() {
             icon: markerIcon
           });
           markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+          google.maps.event.addListener(markers[i], 'click', showInfo);
           setTimeout(dropMarker(i), i * 100);
         }
       }
@@ -319,5 +319,57 @@ function searchForFood() {
   }
   if (document.getElementById('restaurantsearch').unchecked) {
     clearMarkers();
+  }
+}
+
+
+function buildISContent(place) {
+  document.getElementById('is-icon').innerHTML = '<img class="typeIcon" ' +
+    'src="' + place.icon + '"/>';
+  document.getElementById('is-url').innerHTML = '<b><a href="' + place.url +
+    '" target = "_blank" >' + place.name + '</a></b>';
+  document.getElementById('is-address').textContent = place.vicinity;
+
+  if (place.formatted_phone_number) {
+    document.getElementById('is-phone-row').style.display = '';
+    document.getElementById('is-phone').textContent =
+      place.formatted_phone_number;
+  }
+  else {
+    document.getElementById('is-phone-row').style.display = 'none';
+  }
+
+
+  if (place.rating) {
+    var ratingHtml = '';
+    for (var i = 0; i < 5; i++) {
+      if (place.rating < (i + 0.5)) {
+        ratingHtml += '&#10025;';
+      }
+      else {
+        ratingHtml += '&#10029;';
+      }
+      document.getElementById('is-rating-row').style.display = '';
+      document.getElementById('is-rating').innerHTML = ratingHtml;
+    }
+  }
+  else {
+    document.getElementById('is-rating-row').style.display = 'none';
+  }
+
+  // The regexp isolates the first part of the URL (domain plus subdomain)
+  // to give a short URL for displaying in the info window.
+  if (place.website) {
+    var fullUrl = place.website;
+    var website = hostnameRegexp.exec(place.website);
+    if (website === null) {
+      website = 'http://' + place.website + '/';
+      fullUrl = website;
+    }
+    document.getElementById('is-website-row').style.display = '';
+    document.getElementById('is-website').textContent = website;
+  }
+  else {
+    document.getElementById('is-website-row').style.display = 'none';
   }
 }
