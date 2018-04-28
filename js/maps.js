@@ -196,11 +196,11 @@ function buildIWContent(place) {
 function showRecomendations(results) {
   var i = 0;
   var c = 0;
-  var d = 0 ;
+  var d = 0;
 
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < results.length; i++) {
     if (results === undefined) { break; }
-    if (results.photos === 1) {break;}
+    if (results.photos === 1) { break; }
     if (results[i].photos) {
       if (results[i].photos === undefined) { continue; }
       if (results[i].rating === undefined) { continue; }
@@ -213,6 +213,54 @@ function showRecomendations(results) {
         function(place, status) {
           if (status !== google.maps.places.PlacesServiceStatus.OK) {
             return;
+          }
+          document.getElementById('rec-sec-icon' + d).innerHTML = '<img class="typeIcon" ' +
+            'src="' + place.icon + '"/>';
+          document.getElementById('rec-sec-url' + d).innerHTML = '<b><a href="' + place.url +
+            '" target = "_blank" >' + place.name + '</a></b>';
+          document.getElementById('rec-sec-address' + d).textContent = place.vicinity;
+
+          if (place.formatted_phone_number) {
+            document.getElementById('rec-sec-phone-row' + d).style.display = '';
+            document.getElementById('rec-sec-phone' + d).textContent =
+              place.formatted_phone_number;
+          }
+          else {
+            document.getElementById('rec-sec-phone-row' + d).style.display = 'none';
+          }
+
+
+          if (place.rating) {
+            var ratingHtml = '';
+            for (var i = 0; i < 5; i++) {
+              if (place.rating < (i + 0.5)) {
+                ratingHtml += '&#10025;';
+              }
+              else {
+                ratingHtml += '&#10029;';
+              }
+              document.getElementById('rec-sec-rating-row' + d).style.display = '';
+              document.getElementById('rec-sec-rating' + d).innerHTML = ratingHtml;
+            }
+          }
+          else {
+            document.getElementById('rec-sec-rating-row' + d).style.display = 'none';
+          }
+
+          // The regexp isolates the first part of the URL (domain plus subdomain)
+          // to give a short URL for displaying in the info window.
+          if (place.website) {
+            var fullUrl = place.website;
+            var website = hostnameRegexp.exec(place.website);
+            if (website === null) {
+              website = 'http://' + place.website + '/';
+              fullUrl = website;
+            }
+            document.getElementById('rec-sec-website-row' + d).style.display = '';
+            document.getElementById('rec-sec-website'  + d).textContent = website;
+          }
+          else {
+            document.getElementById('rec-sec-website-row'  + d).style.display = 'none';
           }
           document.getElementById("recommendationlink" + d).href = place.website;
           console.log(place);
