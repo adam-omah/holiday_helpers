@@ -38,13 +38,9 @@
 
   <div class="container-fluid">
     <div class="row">
-
-      <div id="locationField">
-        <input id="autocomplete" placeholder="Enter a city" type="text" />
-      </div>
-
       <div id="controls2">
         <div>
+          <h4>Search Area For:</h4>
           <select id="selecttype">
             
             <option value="museum">Museum</option>
@@ -58,16 +54,23 @@
             
           </select>
         </div>
-        <div class="search-boxes search-boxes-top">
+      </div>
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
+      <div id="controls1">
+        <div class="search-boxes">
+        <div>
           <p>Accommodation?
             <input type="checkbox" id="lodgingsearch" onclick="searchForLodging();">
           </p>
         </div>
-        <div class="search-boxes">
+        <div>
           <p>
             Restaurant?
             <input type="checkbox" id="restaurantsearch" onclick="searchForFood();">
           </p>
+        </div>
         </div>
       </div>
 
@@ -75,14 +78,11 @@
       <div id="map"></div>
 
       <div id="initialwindow">
-        <h2> Welcome to Holiday Helpers! is there a City you would like to visit? <br> Type it then hit Enter & Explore!</h2>
+        <h2> Welcome to Holiday Helpers! Is there a City you would like to visit? <br> Type it, hit Enter & Explore!</h2>
       </div>
-
-
-
+      
+      <div id="info-section-place">
       <div id="photo-section0">
-
-
         <a id="photob0" data-trigger="preview" href="javascript:;" data-selectable="true">
           <img id="photob00"src="assests/hhbg1.png" /><span class="glyphicon glyphicon-option-horizontal"></span>
         </a>
@@ -125,173 +125,176 @@
           </tr>
         </table>
       </div>
-
+      </div>
+      
+      <div class="col-xs-12 text-center" id="rec-title"><h3>Recommendations:</h3></div>
+      
       <div id="photo-row" class="row">
-        <div id="recommendation-section0" class="col-xs-3">
-              <a id="recphotob00" data-trigger="rec-images0" href="javascript:;" data-selectable="true">
+        <div id="recommendation-section0" class="col-xs-3 rec-section">
+          <a id="recphotob00" data-trigger="rec-images0" href="javascript:;" data-selectable="true">
             <img id="recphotob000"src="assests/hhbg1.png" /><span class="glyphicon glyphicon-option-horizontal"></span>
             </a>
-              <a id="recphotoa00" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa00" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto00" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa01" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa01" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto01" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa02" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa02" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto02" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa03" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa03" href="assests/hhbg1.png" data-fancybox="rec-images0" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto03" src="assests/hhbg1.png">
             </a>
-            <div id="rec-section0" class="rec-sectoions">
-              <table>
-                <tr id="rec-sec-url-row0" class="rec-sec-table-rows">
-                  <td id="rec-sec-icon0" class="rec-sec-icons"></td>
-                  <td id="rec-sec-url0"></td>
-                </tr>
-                <tr id="rec-sec-address-row0" class="rec-sec-table-rows">
-                  <td class="rec-sec0_attribute_name">Address:</td>
-                  <td id="rec-sec-address0"></td>
-                </tr>
-                <tr id="rec-sec-phone-row0" class="rec-sec-table-rows">
-                  <td class="rec-sec0_attribute_name">Telephone:</td>
-                  <td id="rec-sec-phone0"></td>
-                </tr>
-                <tr id="rec-sec-rating-row0" class="rec-sec-table-rows">
-                  <td class="rec-sec0_attribute_name">Rating:</td>
-                  <td id="rec-sec-rating0"></td>
-                </tr>
-                <tr id="rec-sec-website-row0" class="rec-sec-table-rows">
-                  <td class="rec-sec0_attribute_name">Website:</td>
-                  <td><a id="rec-sec-website0" href="#" target="_blank"><span id="rec-sec-websitetext0"></span></a></td>
-                </tr>
-              </table>
+          <div id="rec-section0" class="rec-sectoions">
+            <table>
+              <tr id="rec-sec-url-row0" class="rec-sec-table-rows">
+                <td id="rec-sec-icon0" class="rec-sec-icons"></td>
+                <td id="rec-sec-url0"></td>
+              </tr>
+              <tr id="rec-sec-address-row0" class="rec-sec-table-rows">
+                <td class="rec-sec0_attribute_name">Address:</td>
+                <td id="rec-sec-address0"></td>
+              </tr>
+              <tr id="rec-sec-phone-row0" class="rec-sec-table-rows">
+                <td class="rec-sec0_attribute_name">Telephone:</td>
+                <td id="rec-sec-phone0"></td>
+              </tr>
+              <tr id="rec-sec-rating-row0" class="rec-sec-table-rows">
+                <td class="rec-sec0_attribute_name">Rating:</td>
+                <td id="rec-sec-rating0"></td>
+              </tr>
+              <tr id="rec-sec-website-row0" class="rec-sec-table-rows">
+                <td class="rec-sec0_attribute_name">Website:</td>
+                <td><a id="rec-sec-website0" href="#" target="_blank"><span id="rec-sec-websitetext0"></span></a></td>
+              </tr>
+            </table>
           </div>
 
         </div>
-        <div id="recommendation-section1" class="col-xs-3">
-              <a id="recphotob10" data-trigger="rec-images1" href="javascript:;" data-selectable="true">
+        <div id="recommendation-section1" class="col-xs-3 rec-section">
+          <a id="recphotob10" data-trigger="rec-images1" href="javascript:;" data-selectable="true">
             <img id="recphotob010"src="assests/hhbg1.png" /><span class="glyphicon glyphicon-option-horizontal"></span>
             </a>
-              <a id="recphotoa10" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa10" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto10" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa11" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa11" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto11" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa12" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa12" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto12" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa13" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa13" href="assests/hhbg1.png" data-fancybox="rec-images1" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto13" src="assests/hhbg1.png">
             </a>
-            <div id="rec-section1" class="rec-sectoions">
-              <table>
-                <tr id="rec-sec-url-row1" class="rec-sec-table-rows">
-                  <td id="rec-sec-icon1" class="rec-sec-icons"></td>
-                  <td id="rec-sec-url1"></td>
-                </tr>
-                <tr id="rec-sec-address-row1" class="rec-sec-table-rows">
-                  <td class="rec-sec1_attribute_name">Address:</td>
-                  <td id="rec-sec-address1"></td>
-                </tr>
-                <tr id="rec-sec-phone-row1" class="rec-sec-table-rows">
-                  <td class="rec-sec1_attribute_name">Telephone:</td>
-                  <td id="rec-sec-phone1"></td>
-                </tr>
-                <tr id="rec-sec-rating-row1" class="rec-sec-table-rows">
-                  <td class="rec-sec1_attribute_name">Rating:</td>
-                  <td id="rec-sec-rating1"></td>
-                </tr>
-                <tr id="rec-sec-website-row1" class="rec-sec-table-rows">
-                  <td class="rec-sec1_attribute_name">Website:</td>
-                  <td><a id="rec-sec-website1" href="#" target="_blank"><span id="rec-sec-websitetext1"></span></a></td>
-                </tr>
-              </table>
+          <div id="rec-section1" class="rec-sectoions">
+            <table>
+              <tr id="rec-sec-url-row1" class="rec-sec-table-rows">
+                <td id="rec-sec-icon1" class="rec-sec-icons"></td>
+                <td id="rec-sec-url1"></td>
+              </tr>
+              <tr id="rec-sec-address-row1" class="rec-sec-table-rows">
+                <td class="rec-sec1_attribute_name">Address:</td>
+                <td id="rec-sec-address1"></td>
+              </tr>
+              <tr id="rec-sec-phone-row1" class="rec-sec-table-rows">
+                <td class="rec-sec1_attribute_name">Telephone:</td>
+                <td id="rec-sec-phone1"></td>
+              </tr>
+              <tr id="rec-sec-rating-row1" class="rec-sec-table-rows">
+                <td class="rec-sec1_attribute_name">Rating:</td>
+                <td id="rec-sec-rating1"></td>
+              </tr>
+              <tr id="rec-sec-website-row1" class="rec-sec-table-rows">
+                <td class="rec-sec1_attribute_name">Website:</td>
+                <td><a id="rec-sec-website1" href="#" target="_blank"><span id="rec-sec-websitetext1"></span></a></td>
+              </tr>
+            </table>
           </div>
 
         </div>
-        <div id="recommendation-section2" class="col-xs-3">
-              <a id="recphotob20" data-trigger="rec-images2" href="javascript:;" data-selectable="true">
+        <div id="recommendation-section2" class="col-xs-3 rec-section">
+          <a id="recphotob20" data-trigger="rec-images2" href="javascript:;" data-selectable="true">
             <img id="recphotob020"src="assests/hhbg1.png" /><span class="glyphicon glyphicon-option-horizontal"></span>
             </a>
-              <a id="recphotoa20" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa20" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto20" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa21" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa21" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto21" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa22" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa22" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto22" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa23" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa23" href="assests/hhbg1.png" data-fancybox="rec-images2" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto23" src="assests/hhbg1.png">
             </a>
-            <div id="rec-section2" class="rec-sectoions">
-              <table>
-                <tr id="rec-sec-url-row2" class="rec-sec-table-rows">
-                  <td id="rec-sec-icon2" class="rec-sec-icons"></td>
-                  <td id="rec-sec-url2"></td>
-                </tr>
-                <tr id="rec-sec-address-row2" class="rec-sec-table-rows">
-                  <td class="rec-sec2_attribute_name">Address:</td>
-                  <td id="rec-sec-address2"></td>
-                </tr>
-                <tr id="rec-sec-phone-row2" class="rec-sec-table-rows">
-                  <td class="rec-sec2_attribute_name">Telephone:</td>
-                  <td id="rec-sec-phone2"></td>
-                </tr>
-                <tr id="rec-sec-rating-row2" class="rec-sec-table-rows">
-                  <td class="rec-sec2_attribute_name">Rating:</td>
-                  <td id="rec-sec-rating2"></td>
-                </tr>
-                <tr id="rec-sec-website-row2" class="rec-sec-table-rows">
-                  <td class="rec-sec2_attribute_name">Website:</td>
-                  <td><a id="rec-sec-website2" href="#" target="_blank"><span id="rec-sec-websitetext2"></span></a></td>
-                </tr>
-              </table>
+          <div id="rec-section2" class="rec-sectoions">
+            <table>
+              <tr id="rec-sec-url-row2" class="rec-sec-table-rows">
+                <td id="rec-sec-icon2" class="rec-sec-icons"></td>
+                <td id="rec-sec-url2"></td>
+              </tr>
+              <tr id="rec-sec-address-row2" class="rec-sec-table-rows">
+                <td class="rec-sec2_attribute_name">Address:</td>
+                <td id="rec-sec-address2"></td>
+              </tr>
+              <tr id="rec-sec-phone-row2" class="rec-sec-table-rows">
+                <td class="rec-sec2_attribute_name">Telephone:</td>
+                <td id="rec-sec-phone2"></td>
+              </tr>
+              <tr id="rec-sec-rating-row2" class="rec-sec-table-rows">
+                <td class="rec-sec2_attribute_name">Rating:</td>
+                <td id="rec-sec-rating2"></td>
+              </tr>
+              <tr id="rec-sec-website-row2" class="rec-sec-table-rows">
+                <td class="rec-sec2_attribute_name">Website:</td>
+                <td><a id="rec-sec-website2" href="#" target="_blank"><span id="rec-sec-websitetext2"></span></a></td>
+              </tr>
+            </table>
           </div>
 
         </div>
-        <div id="recommendation-section3" class="col-xs-3">
-              <a id="recphotob30" data-trigger="rec-images3" href="javascript:;" data-selectable="true">
+        <div id="recommendation-section3" class="col-xs-3 rec-section">
+          <a id="recphotob30" data-trigger="rec-images3" href="javascript:;" data-selectable="true">
             <img id="recphotob030"src="assests/hhbg1.png" /><span class="glyphicon glyphicon-option-horizontal"></span>
             </a>
-              <a id="recphotoa30" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa30" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto30" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa31" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa31" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto31" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa32" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa32" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto32" src="assests/hhbg1.png">
             </a>
-              <a id="recphotoa33" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
+          <a id="recphotoa33" href="assests/hhbg1.png" data-fancybox="rec-images3" data-width="1500" data-height="1000" class="photo-hide">
             <img id="recphoto33" src="assests/hhbg1.png">
             </a>
-            <div id="rec-section3" class="rec-sectoions">
-              <table>
-                <tr id="rec-sec-url-row3" class="rec-sec-table-rows">
-                  <td id="rec-sec-icon3" class="rec-sec-icons"></td>
-                  <td id="rec-sec-url3"></td>
-                </tr>
-                <tr id="rec-sec-address-row3" class="rec-sec-table-rows">
-                  <td class="rec-sec_attribute_name">Address:</td>
-                  <td id="rec-sec-address3"></td>
-                </tr>
-                <tr id="rec-sec-phone-row3" class="rec-sec-table-rows">
-                  <td class="rec-sec3_attribute_name">Telephone:</td>
-                  <td id="rec-sec-phone3"></td>
-                </tr>
-                <tr id="rec-sec-rating-row3" class="rec-sec-table-rows">
-                  <td class="rec-sec3_attribute_name">Rating:</td>
-                  <td id="rec-sec-rating3"></td>
-                </tr>
-                <tr id="rec-sec-website-row3" class="rec-sec-table-rows">
-                  <td class="rec_sec_attribute_name">Website:</td>
-                  <td><a id="rec-sec-website3" href="#" target="_blank"><span id="rec-sec-websitetext3"></span></a></td>
-                </tr>
-              </table>
+          <div id="rec-section3" class="rec-sectoions">
+            <table>
+              <tr id="rec-sec-url-row3" class="rec-sec-table-rows">
+                <td id="rec-sec-icon3" class="rec-sec-icons"></td>
+                <td id="rec-sec-url3"></td>
+              </tr>
+              <tr id="rec-sec-address-row3" class="rec-sec-table-rows">
+                <td class="rec-sec_attribute_name">Address:</td>
+                <td id="rec-sec-address3"></td>
+              </tr>
+              <tr id="rec-sec-phone-row3" class="rec-sec-table-rows">
+                <td class="rec-sec3_attribute_name">Telephone:</td>
+                <td id="rec-sec-phone3"></td>
+              </tr>
+              <tr id="rec-sec-rating-row3" class="rec-sec-table-rows">
+                <td class="rec-sec3_attribute_name">Rating:</td>
+                <td id="rec-sec-rating3"></td>
+              </tr>
+              <tr id="rec-sec-website-row3" class="rec-sec-table-rows">
+                <td class="rec_sec_attribute_name">Website:</td>
+                <td><a id="rec-sec-website3" href="#" target="_blank"><span id="rec-sec-websitetext3"></span></a></td>
+              </tr>
+            </table>
           </div>
 
         </div>

@@ -52,8 +52,11 @@ function onPlaceChanged() {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     console.log("results1");
-    document.getElementById('controls2').style.display = "contents";
+    document.getElementById('controls2').style.display = "inline-block";
+    document.getElementById('controls1').style.display = "flex";
     document.getElementById('initialwindow').style.display = "none";
+    document.getElementById('rec-title').style.display = "inline-block";
+    document.getElementById('locationField').style.marginLeft = "12%";
     search();
   }
   else {
@@ -131,6 +134,8 @@ function showInfo() {
       }
       infoWindow.open(map, marker);
       document.getElementById('info-section').style.display = "block";
+      document.getElementById('map').style.width = "74vw";
+      document.getElementById('info-section-place').style.display = "block";
       buildIWContent(place);
       showPhotos(place);
       buildISContent(place);
@@ -198,7 +203,7 @@ function showRecomendations(results) {
   var c = 0;
   var d = 0;
   var x = 0;
-
+  document.getElementById('photo-row').style.display = "flex";
   for (i = 0; i < results.length; i++) {
     if (results === undefined) { break; }
     if (results.photos === 1) { break; }
@@ -295,9 +300,6 @@ function showPhotos(place) {
       document.getElementById("photoa" + i).href = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
       console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
       console.log(typeof(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
-
-      document.getElementById('controls2').style.marginLeft = "32vw";
-      document.getElementById('map').style.width = "53.3vw";
       document.getElementById('photo-section0').style.display = "block";
       if (i < 1) {
         document.getElementById("photob0" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
