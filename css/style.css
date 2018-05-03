@@ -3,6 +3,24 @@
     width: 100vw;
 }
 
+.rec-sectoions {
+    display: inline-table;
+    width: 14vw;
+}
+
+.rec-sec-table-rows {
+    font-size:10px;
+}
+
+.photo-hide {
+    display:none;
+}
+
+#photo-row .typeIcon {
+    width: 2vw;
+    height: 5vh;
+}
+
 #photo-section {
     height: 100%
 }

@@ -119,7 +119,7 @@ function dropMarker(i) {
 }
 
 
-// Get the place details for a hotel. Show the information in an info window,
+// Get the place details for a place marker. Show the information in an info window,
 // anchored on the marker that the user selected.
 // Populates Photo's area when Marker is clicked if photos are present.
 function showInfo() {
@@ -197,6 +197,7 @@ function showRecomendations(results) {
   var i = 0;
   var c = 0;
   var d = 0;
+  var x = 0;
 
   for (i = 0; i < results.length; i++) {
     if (results === undefined) { break; }
@@ -207,7 +208,6 @@ function showRecomendations(results) {
       if (results[i].rating < 4) { continue; }
       console.log("c is" + c + "before");
       if (c == 4) { break; }
-      document.getElementById("recommendation" + c).src = results[i].photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
       console.log(results[i]);
       places.getDetails({ placeId: results[i].place_id },
         function(place, status) {
@@ -229,6 +229,17 @@ function showRecomendations(results) {
             document.getElementById('rec-sec-phone-row' + d).style.display = 'none';
           }
 
+          for (x = 0; x < 4; x++) {
+            if (place.photos[x] === undefined) { continue; }
+            document.getElementById("recphoto" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+            document.getElementById("recphotoa" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+            console.log(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
+            console.log(typeof(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
+            if (x < 1) {
+              document.getElementById("recphotob0" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+              document.getElementById("recphotob" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+            }
+          }
 
           if (place.rating) {
             var ratingHtml = '';
@@ -257,12 +268,12 @@ function showRecomendations(results) {
               fullUrl = website;
             }
             document.getElementById('rec-sec-website-row' + d).style.display = '';
-            document.getElementById('rec-sec-website'  + d).textContent = website;
+            document.getElementById('rec-sec-websitetext' + d).textContent = fullUrl;
+            document.getElementById("rec-sec-website" + d).href = place.website;
           }
           else {
-            document.getElementById('rec-sec-website-row'  + d).style.display = 'none';
+            document.getElementById('rec-sec-website-row' + d).style.display = 'none';
           }
-          document.getElementById("recommendationlink" + d).href = place.website;
           console.log(place);
           console.log(place.website);
           console.log(d);
