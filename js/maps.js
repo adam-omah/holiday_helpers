@@ -56,7 +56,6 @@ function onPlaceChanged() {
     document.getElementById('controls1').style.display = "flex";
     document.getElementById('initialwindow').style.display = "none";
     document.getElementById('rec-title').style.display = "inline-block";
-    document.getElementById('locationField').style.marginLeft = "12%";
     search();
   }
   else {
@@ -428,7 +427,8 @@ function buildISContent(place) {
       fullUrl = website;
     }
     document.getElementById('is-website-row').style.display = '';
-    document.getElementById('is-website').textContent = website;
+    document.getElementById('is-website').href = place.website;
+    document.getElementById('is-websitetext').textContent = website;
   }
   else {
     document.getElementById('is-website-row').style.display = 'none';

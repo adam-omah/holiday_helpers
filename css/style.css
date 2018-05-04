@@ -1,6 +1,92 @@
+/* ------ Global & Map --------- */
+
+body {
+    background-color: #5cdae5;
+}
+
 #map {
     height: 65vh;
     width: 100vw;
+}
+
+/* ------ /// Global & Map --------- */
+
+/* ------ Auto complete & search field's --------- */
+
+#selecttype {
+    border: none;
+}
+
+#autocomplete {
+    position: relative;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bolder;
+    border-radius: 40px;
+    border: 3px solid slategray;
+}
+
+#locationField {
+    margin: 0 auto;
+}
+
+#controls2, #controls1 {
+    display: none;
+    position: relative;
+    font-size: 1em;
+}
+
+#controls2 h4 {
+    font-size: 1rem;
+}
+
+
+
+#selecttype {
+    width: 100vw;
+}
+
+.search-boxes {
+    font-size: 12px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    padding-left: 5px;
+}
+
+.search-boxes p {
+    margin-bottom: 0px;
+    text-align: center;
+    font-weight: 500;
+    display: inline-block;
+}
+
+#initialwindow {
+    position: absolute;
+    background: #5fdde8;
+    margin-top: 20vh;
+    padding: 40px;
+    border-radius: 100px;
+    color: #254088;
+    text-align: center;
+}
+
+#initialwindow h2 { 
+    font-size: 1.1rem;
+}
+
+/* ------ /// Auto complete & search field's --------- */
+
+
+
+/*------ Recommendations Section ---------- */
+
+#rec-title {
+    display:none;
+    width:100%;
+    background: white;
+    margin-bottom: 0px;
+    border-radius: 20px;
+    margin-top: 10px;
 }
 
 .rec-section {
@@ -11,65 +97,52 @@
 
 .rec-sectoions {
     display: inline-table;
-    width: 14vw;
 }
 
 .rec-sec-table-rows {
-    font-size:10px;
+    font-size:14px;
 }
 
 .photo-hide {
     display:none;
 }
 
-#rec-title {
-    display:none;
-    width:100%;
-    background: white;
-    margin-bottom: 0px;
-    margin-left: 30%;
-    margin-right: 30%;
-    border-radius: 20px;
-    margin-top: 10px;
-}
-
 #photo-row {
     display:none;
-    margin-left: 1px;
+    max-width: 100vw;
+    margin-left: 0px;
 }
 
 #photo-row .typeIcon {
-    width: 2vw;
+    width: 14vw;
     height: 5vh;
 }
 
-#photo-section {
-    height: 100%
+#photo-row img, #photo-row table {
+    width: 90vw;
 }
+
+/*------ /// Recommendations Section ---------- */
+
+
+/*------ Info Section ---------- */
 
 #info-section-place {
     padding-top: 2%;
     padding-bottom: 2%;
-    margin-left: 0.5%;
     border: 2px solid white;
     border-radius: 25px;
     display: none;
-    margin-bottom: auto;
+    margin: 0 auto;
+    width: 98vw;
 }
 
-#locationField {
-    margin-left: 30%;
-}
-
-#autocomplete {
-    position: relative;
-    font-size: 45px;
-    text-align: center;
-    font-weight: bolder;
-}
-
-#selecttype {
-    border: none;
+#photo-section0 img {
+    width: 100%;
+    height: 60%;
+    margin: 0 auto;
+    margin-left: 0px;
+    margin-top: 14px;
 }
 
 #info-section {
@@ -79,7 +152,8 @@
 }
 
 #info-section img {
-    width: 40%;
+    width: 14vw;
+    height: 5vh;
 }
 
 #info-section a {
@@ -90,24 +164,33 @@
     display: none;
 }
 
-.search-boxes {
-    font-size: 15px;
-    background-color: #fff;
-    border: 1px solid #f1f1f1;
-    padding-left: 5px;
-}
-
-.search-boxes p {
-    margin-top: 3%;
-    margin-bottom: 0px;
-    text-align: center;
-    font-weight: 700;
-}
-
-#controls2, #controls1 {
+#photoa0, #photoa1, #photoa2, #photoa3{
     display: none;
-    position: relative;
-    font-size: 24px;
+}
+
+/*------ /// Info Section ---------- */
+
+
+/* ------ Media Rule For Map (only style that is desktop first to allow JS to function properly) --------- */
+
+
+
+@media only screen and (max-width: 1024px) {
+    #map {
+        height: 65vh;
+        width: 100vw !important;
+    }
+}
+
+/* ------ /// Media Rule For Map --------- */
+
+
+/* ------ Media Rule's For Desktop --------- */
+
+@media only screen and (min-width: 1040px){
+
+#autocomplete {
+    font-size: 45px;
 }
 
 #controls2 {
@@ -119,81 +202,46 @@
     width: 25vw;
 }
 
+#initialwindow {
+    margin-left: 16.5vw;
+}
+
+#initialwindow h2 { 
+    font-size: 2rem;
+}
+
+#rec-title {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.rec-sectoions {
+    width: 14vw;
+}
+
+.rec-sec-table-rows {
+    font-size:10px;
+}
 
 #photo-row img {
     height: 15vh;
     width: 10vw;
 }
 
-#photo-section0 img {
-    width: 100%;
-    height: 60%;
-    margin: auto;
+#photo-row .typeIcon {
+    width: 2vw;
 }
 
-#photoa0, #photoa1, #photoa2, #photoa3{
-    display: none;
+#info-section-place {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 0.5%;
 }
 
-
-.photo-credits {
-    text-overflow: clip;
-    font-size: 12px;
+#info-section img {
+    width: 40%;
 }
 
-body {
-    background-color: #5cdae5;
 }
 
-
-img {
-    border: 1px solid transparent;
-}
-
-
-#initialwindow {
-    position: absolute;
-    background: #5fdde8;
-    margin-left: 16.5vw;
-    margin-top: 20vh;
-    padding: 40px;
-    border-radius: 100px;
-    color: #254088;
-    text-align: center;
-}
-
-
-
-@media only screen and (max-width: 1024px) {
-    #photo-row img {
-        height: 35vh;
-        width: 100%;
-    }
-    
-    #map {
-        height: 65vh;
-        width: 100vw !important;
-    }
-
-    #controls2 {
-        margin-left: 67vw;
-    }
-
-    #initialwindow {
-        font-size: 1rem;
-        margin-left: 0px;
-    }
-}
-
-@media only screen and (max-width: 700px) {
-    #controls2 {
-        margin-left: 3vw;
-        margin-top: 7vh;
-        font-size: 16px;
-    }
-    #initialwindow {
-        font-size: 1rem;
-        margin-left: 0px;
-        margin-top: 44px;
-    }
-}
+/* ------ /// Media Rule's For Desktop --------- */
