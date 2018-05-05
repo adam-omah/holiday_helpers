@@ -286,11 +286,23 @@ body {
 
     #controls2 {
         padding-left: 5%;
+        max-width: 20vw;
+    }
+    #controls2 h4 {
+        font-size: 1rem;
+    }
+    #selecttype {
+        width: 100%;
+        padding-left: 0px;
+        margin-left: 0px;
     }
 
     #controls1 {
-        padding-left: 11%;
-        width: 25vw;
+        padding-left: 0px;
+        width: 20vw;
+    }
+    .search-boxes {
+        font-size: 20px;
     }
 
     #initialwindow {
@@ -327,12 +339,15 @@ body {
         padding-top: 2%;
         padding-bottom: 2%;
         margin-left: 0.5%;
+        width: 24%;
     }
-
-    #info-section img {
-        width: 40%;
+    #info-section a {
+        font-size: 16px;
     }
-
+    #info-table {
+        font-size: 13px;
+        width: 100%;
+    }
 }
 
 /* ------ /// Media Rule's For Desktop --------- */
