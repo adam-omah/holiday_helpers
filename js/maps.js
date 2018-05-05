@@ -59,7 +59,7 @@ function onPlaceChanged() {
     document.getElementById('initialwindow').style.display = "none";
     document.getElementById('rec-title').style.display = "inline-block";
     search();
-    
+
   }
   else {
     document.getElementById('autocomplete').placeholder = 'Enter a city';
@@ -220,6 +220,8 @@ function showRecomendations(results) {
   var c = 0;
   var d = 0;
   var x = 0;
+  var e = 0;
+
   document.getElementById('photo-row').style.display = "flex";
   for (i = 0; i < results.length; i++) {
     if (results === undefined) { break; }
@@ -303,6 +305,87 @@ function showRecomendations(results) {
         });
       c++;
       console.log("c is" + c);
+    }
+  }
+  if (c < 3) {
+    for (e = 0; e < results.length; e++) {
+      if (results === undefined) { break; }
+        console.log("c is" + c + "before");
+        if (c == 4) { break; }
+        console.log(results[e]);
+        places.getDetails({ placeId: results[e].place_id },
+          function(place, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+              return;
+            }
+            document.getElementById('rec-sec-icon' + d).innerHTML = '<img class="typeIcon" ' +
+              'src="' + place.icon + '"/>';
+            document.getElementById('rec-sec-url' + d).innerHTML = '<b><a href="' + place.url +
+              '" target = "_blank" >' + place.name + '</a></b>';
+            document.getElementById('rec-sec-address' + d).textContent = place.vicinity;
+
+            if (place.formatted_phone_number) {
+              document.getElementById('rec-sec-phone-row' + d).style.display = '';
+              document.getElementById('rec-sec-phone' + d).textContent =
+                place.formatted_phone_number;
+            }
+            else {
+              document.getElementById('rec-sec-phone-row' + d).style.display = 'none';
+            }
+            if (place.photos){
+            for (x = 0; x < 4; x++) {
+              if (place.photos[x] === undefined) { continue; }
+              document.getElementById("recphoto" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+              document.getElementById("recphotoa" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+              console.log(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
+              console.log(typeof(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
+              if (x < 1) {
+                document.getElementById("recphotob0" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+                document.getElementById("recphotob" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
+              }
+            }
+            }
+
+            if (place.rating) {
+              var ratingHtml = '';
+              for (var i = 0; i < 5; i++) {
+                if (place.rating < (i + 0.5)) {
+                  ratingHtml += '&#10025;';
+                }
+                else {
+                  ratingHtml += '&#10029;';
+                }
+                document.getElementById('rec-sec-rating-row' + d).style.display = '';
+                document.getElementById('rec-sec-rating' + d).innerHTML = ratingHtml;
+              }
+            }
+            else {
+              document.getElementById('rec-sec-rating-row' + d).style.display = 'none';
+            }
+
+            // The regexp isolates the first part of the URL (domain plus subdomain)
+            // to give a short URL for displaying in the info window.
+            if (place.website) {
+              var fullUrl = place.website;
+              var website = hostnameRegexp.exec(place.website);
+              if (website === null) {
+                website = 'http://' + place.website + '/';
+                fullUrl = website;
+              }
+              document.getElementById('rec-sec-website-row' + d).style.display = '';
+              document.getElementById('rec-sec-websitetext' + d).textContent = fullUrl;
+              document.getElementById("rec-sec-website" + d).href = place.website;
+            }
+            else {
+              document.getElementById('rec-sec-website-row' + d).style.display = 'none';
+            }
+            console.log(place);
+            console.log(place.website);
+            console.log(d);
+            d++;
+          });
+        c++;
+        console.log("c is" + c);
     }
   }
 }
@@ -418,7 +501,7 @@ function searchForFood() {
       }
     });
   }
-  else if (document.getElementById('restaurantsearch').checked){
+  else if (document.getElementById('restaurantsearch').checked) {
     var search = {
       bounds: map.getBounds(),
       types: ['restaurant']
