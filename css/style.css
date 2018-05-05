@@ -290,6 +290,7 @@ body {
     }
     #controls2 h4 {
         font-size: 1rem;
+        width: 100%;
     }
     #selecttype {
         width: 100%;
@@ -319,16 +320,20 @@ body {
     }
 
     .rec-sectoions {
-        width: 14vw;
+        width: 70%;
     }
 
     .rec-sec-table-rows {
-        font-size: 10px;
+        font-size: 1em;
+    }
+
+    #photo-row {
+        max-width: 98.9vw;
     }
 
     #photo-row img {
         height: 15vh;
-        width: 10vw;
+        width: 12vw;
     }
 
     #photo-row .typeIcon {

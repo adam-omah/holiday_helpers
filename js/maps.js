@@ -314,7 +314,34 @@ function showPhotos(place) {
 }
 
 function searchForLodging() {
-  if (document.getElementById('lodgingsearch').checked) {
+  if (document.getElementById('lodgingsearch').checked && document.getElementById('restaurantsearch').checked) {
+    clearMarkers();
+    document.getElementById("restaurantsearch").checked = false;
+    var search = {
+      bounds: map.getBounds(),
+      types: ['lodging']
+    };
+
+    places.nearbySearch(search, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        // Create a marker for each amenity found
+        for (var i = 0; i < results.length; i++) {
+          var markerIcon = 'assests/Hotels.png';
+          // Use marker animation to drop the icons incrementally on the map.
+          markers[i] = new google.maps.Marker({
+            position: results[i].geometry.location,
+            animation: google.maps.Animation.DROP,
+            icon: markerIcon
+          });
+          markers[i].placeResult = results[i];
+          google.maps.event.addListener(markers[i], 'click', showInfo);
+          setTimeout(dropMarker(i), i * 100);
+        }
+      }
+    });
+  }
+  else if (document.getElementById('lodgingsearch').checked) {
     var search = {
       bounds: map.getBounds(),
       types: ['lodging']
@@ -342,14 +369,38 @@ function searchForLodging() {
   else {
     clearMarkers();
   }
-  if (document.getElementById('restaurantsearch').unchecked) {
-    clearMarkers();
-  }
 
 }
 
 function searchForFood() {
-  if (document.getElementById('restaurantsearch').checked) {
+  if (document.getElementById('restaurantsearch').checked && document.getElementById('lodgingsearch').checked) {
+    clearMarkers();
+    document.getElementById("lodgingsearch").checked = false;
+    var search = {
+      bounds: map.getBounds(),
+      types: ['restaurant']
+    };
+
+    places.nearbySearch(search, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        // Create a marker for each Restaurant found
+        for (var i = 0; i < results.length; i++) {
+          var markerIcon = 'assests/Restaurants.png';
+          // Use marker animation to drop the icons incrementally on the map.
+          markers[i] = new google.maps.Marker({
+            position: results[i].geometry.location,
+            animation: google.maps.Animation.DROP,
+            icon: markerIcon
+          });
+          markers[i].placeResult = results[i];
+          google.maps.event.addListener(markers[i], 'click', showInfo);
+          setTimeout(dropMarker(i), i * 100);
+        }
+      }
+    });
+  }
+  else if (document.getElementById('restaurantsearch').checked){
     var search = {
       bounds: map.getBounds(),
       types: ['restaurant']
@@ -375,9 +426,6 @@ function searchForFood() {
     });
   }
   else {
-    clearMarkers();
-  }
-  if (document.getElementById('restaurantsearch').unchecked) {
     clearMarkers();
   }
 }
