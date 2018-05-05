@@ -353,6 +353,9 @@ body {
         font-size: 13px;
         width: 100%;
     }
+    #photo-section0 img {
+        max-height: 35vh;
+    }
 }
 
 /* ------ /// Media Rule's For Desktop --------- */
