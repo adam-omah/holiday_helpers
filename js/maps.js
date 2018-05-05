@@ -1,5 +1,6 @@
 var map, places, infoWindow;
 var markers = [];
+var exmarkers = [];
 var autocomplete;
 var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
 var hostnameRegexp = new RegExp('^https?://.+?/');
@@ -49,6 +50,7 @@ function typeChanged() {
 function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
+    clearExMarkers();
     map.panTo(place.geometry.location);
     map.setZoom(15);
     console.log("results1");
@@ -57,6 +59,7 @@ function onPlaceChanged() {
     document.getElementById('initialwindow').style.display = "none";
     document.getElementById('rec-title').style.display = "inline-block";
     search();
+    
   }
   else {
     document.getElementById('autocomplete').placeholder = 'Enter a city';
@@ -112,11 +115,26 @@ function clearMarkers() {
   markers = [];
 }
 
+function clearExMarkers() {
+  for (var i = 0; i < exmarkers.length; i++) {
+    if (exmarkers[i]) {
+      exmarkers[i].setMap(null);
+    }
+  }
+  exmarkers = [];
+}
+
 // places markers, adds results to a table.
 
 function dropMarker(i) {
   return function() {
     markers[i].setMap(map);
+  };
+}
+
+function dropExMarker(i) {
+  return function() {
+    exmarkers[i].setMap(map);
   };
 }
 
@@ -315,7 +333,7 @@ function showPhotos(place) {
 
 function searchForLodging() {
   if (document.getElementById('lodgingsearch').checked && document.getElementById('restaurantsearch').checked) {
-    clearMarkers();
+    clearExMarkers();
     document.getElementById("restaurantsearch").checked = false;
     var search = {
       bounds: map.getBounds(),
@@ -329,14 +347,14 @@ function searchForLodging() {
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Hotels.png';
           // Use marker animation to drop the icons incrementally on the map.
-          markers[i] = new google.maps.Marker({
+          exmarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
             icon: markerIcon
           });
-          markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfo);
-          setTimeout(dropMarker(i), i * 100);
+          mexmarkers[i].placeResult = results[i];
+          google.maps.event.addListener(exmarkers[i], 'click', showInfo);
+          setTimeout(dropExMarker(i), i * 100);
         }
       }
     });
@@ -354,27 +372,27 @@ function searchForLodging() {
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Hotels.png';
           // Use marker animation to drop the icons incrementally on the map.
-          markers[i] = new google.maps.Marker({
+          exmarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
             icon: markerIcon
           });
-          markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfo);
-          setTimeout(dropMarker(i), i * 100);
+          exmarkers[i].placeResult = results[i];
+          google.maps.event.addListener(exmarkers[i], 'click', showInfo);
+          setTimeout(dropExMarker(i), i * 100);
         }
       }
     });
   }
   else {
-    clearMarkers();
+    clearExMarkers();
   }
 
 }
 
 function searchForFood() {
   if (document.getElementById('restaurantsearch').checked && document.getElementById('lodgingsearch').checked) {
-    clearMarkers();
+    clearExMarkers();
     document.getElementById("lodgingsearch").checked = false;
     var search = {
       bounds: map.getBounds(),
@@ -388,14 +406,14 @@ function searchForFood() {
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Restaurants.png';
           // Use marker animation to drop the icons incrementally on the map.
-          markers[i] = new google.maps.Marker({
+          exmarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
             icon: markerIcon
           });
-          markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfo);
-          setTimeout(dropMarker(i), i * 100);
+          exmarkers[i].placeResult = results[i];
+          google.maps.event.addListener(exmarkers[i], 'click', showInfo);
+          setTimeout(dropExMarker(i), i * 100);
         }
       }
     });
@@ -413,20 +431,20 @@ function searchForFood() {
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Restaurants.png';
           // Use marker animation to drop the icons incrementally on the map.
-          markers[i] = new google.maps.Marker({
+          exmarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
             icon: markerIcon
           });
-          markers[i].placeResult = results[i];
-          google.maps.event.addListener(markers[i], 'click', showInfo);
-          setTimeout(dropMarker(i), i * 100);
+          exmarkers[i].placeResult = results[i];
+          google.maps.event.addListener(exmarkers[i], 'click', showInfo);
+          setTimeout(dropExMarker(i), i * 100);
         }
       }
     });
   }
   else {
-    clearMarkers();
+    clearExMarkers();
   }
 }
 
