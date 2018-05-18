@@ -411,7 +411,7 @@ function searchForLodging() {
             animation: google.maps.Animation.DROP,
             icon: markerIcon
           });
-          mexmarkers[i].placeResult = results[i];
+          exmarkers[i].placeResult = results[i];
           google.maps.event.addListener(exmarkers[i], 'click', showInfo);
           setTimeout(dropExMarker(i), i * 100);
         }
