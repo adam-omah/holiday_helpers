@@ -40,7 +40,6 @@ function initMap() {
 
 function typeChanged() {
   var selectedType = document.getElementById('selecttype').value;
-  console.log(selectedType);
   clearMarkers();
   search();
 }
@@ -53,7 +52,6 @@ function onPlaceChanged() {
     clearExMarkers();
     map.panTo(place.geometry.location);
     map.setZoom(15);
-    console.log("results1");
     document.getElementById('controls2').style.display = "inline-block";
     document.getElementById('controls1').style.display = "flex";
     document.getElementById('initialwindow').style.display = "none";
@@ -71,7 +69,6 @@ function onPlaceChanged() {
 // Edited to Search For selected type from dropdown menu.*****
 function search() {
   var selectedType = document.getElementById('selecttype').value;
-  console.log(selectedType);
   var search = {
     bounds: map.getBounds(),
     types: [selectedType]
@@ -80,9 +77,6 @@ function search() {
   places.nearbySearch(search, function(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearMarkers();
-      console.log("results");
-      console.log(results);
-      console.log(typeof results);
       showRecomendations(results);
 
       // Create a marker for each amenity found, and
@@ -230,9 +224,7 @@ function showRecomendations(results) {
       if (results[i].photos === undefined) { continue; }
       if (results[i].rating === undefined) { continue; }
       if (results[i].rating < 4) { continue; }
-      console.log("c is" + c + "before");
-      if (c == 4) { break; }
-      console.log(results[i]);
+      if (c == 4) { break; };
       places.getDetails({ placeId: results[i].place_id },
         function(place, status) {
           if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -253,12 +245,10 @@ function showRecomendations(results) {
             document.getElementById('rec-sec-phone-row' + d).style.display = 'none';
           }
 
-          for (x = 0; x < 4; x++) {
+          for (x = 0; x < 3; x++) {
             if (place.photos[x] === undefined) { continue; }
             document.getElementById("recphoto" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
             document.getElementById("recphotoa" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-            console.log(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
-            console.log(typeof(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
             if (x < 1) {
               document.getElementById("recphotob0" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
               document.getElementById("recphotob" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
@@ -298,21 +288,15 @@ function showRecomendations(results) {
           else {
             document.getElementById('rec-sec-website-row' + d).style.display = 'none';
           }
-          console.log(place);
-          console.log(place.website);
-          console.log(d);
           d++;
         });
       c++;
-      console.log("c is" + c);
     }
   }
   if (c < 3) {
     for (e = 0; e < results.length; e++) {
       if (results === undefined) { break; }
-        console.log("c is" + c + "before");
         if (c == 4) { break; }
-        console.log(results[e]);
         places.getDetails({ placeId: results[e].place_id },
           function(place, status) {
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -333,12 +317,10 @@ function showRecomendations(results) {
               document.getElementById('rec-sec-phone-row' + d).style.display = 'none';
             }
             if (place.photos){
-            for (x = 0; x < 4; x++) {
+            for (x = 0; x < 3; x++) {
               if (place.photos[x] === undefined) { continue; }
               document.getElementById("recphoto" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
               document.getElementById("recphotoa" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-              console.log(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
-              console.log(typeof(place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
               if (x < 1) {
                 document.getElementById("recphotob0" + d + x).src = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
                 document.getElementById("recphotob" + d + x).href = place.photos[x].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
@@ -379,13 +361,9 @@ function showRecomendations(results) {
             else {
               document.getElementById('rec-sec-website-row' + d).style.display = 'none';
             }
-            console.log(place);
-            console.log(place.website);
-            console.log(d);
             d++;
           });
         c++;
-        console.log("c is" + c);
     }
   }
 }
@@ -398,8 +376,6 @@ function showPhotos(place) {
       if (place.photos[i] === undefined) { continue; }
       document.getElementById("photo" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
       document.getElementById("photoa" + i).href = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
-      console.log(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }));
-      console.log(typeof(place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 })));
       document.getElementById('photo-section0').style.display = "block";
       if (i < 1) {
         document.getElementById("photob0" + i).src = place.photos[i].getUrl({ 'maxWidth': 350, 'maxHeight': 350 });
