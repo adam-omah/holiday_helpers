@@ -32,7 +32,7 @@ function initMap() {
   autocomplete.addListener('place_changed', onPlaceChanged);
 
 
-  // Add a DOM event listener to react when the user selects a new type of recommendations.
+  // Add a DOM event listener to react when the user selects a new type of search.
   document.getElementById('selecttype').addEventListener(
     'change', typeChanged);
 
@@ -45,7 +45,7 @@ function typeChanged() {
 }
 
 // When the user selects a city, get the place details for the city and
-// zoom the map in on the city.
+// zoom the map in on the city. removes initial window, displays controls for changing type of search
 function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
@@ -118,13 +118,15 @@ function clearExMarkers() {
   exmarkers = [];
 }
 
-// places markers, adds results to a table.
+// places markers, displays on the map.
 
 function dropMarker(i) {
   return function() {
     markers[i].setMap(map);
   };
 }
+
+// Extra search markers, displays on the map.
 
 function dropExMarker(i) {
   return function() {
@@ -135,7 +137,7 @@ function dropExMarker(i) {
 
 // Get the place details for a place marker. Show the information in an info window,
 // anchored on the marker that the user selected.
-// Populates Photo's area when Marker is clicked if photos are present.
+// Populates Photo's and info area when Marker is clicked with the information recieved from places api.
 function showInfo() {
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id },
@@ -190,9 +192,6 @@ function buildIWContent(place) {
   else {
     document.getElementById('iw-rating-row').style.display = 'none';
   }
-
-  // The regexp isolates the first part of the URL (domain plus subdomain)
-  // to give a short URL for displaying in the info window.
   if (place.website) {
     var fullUrl = place.website;
     var website = hostnameRegexp.exec(place.website);
@@ -271,9 +270,6 @@ function showRecomendations(results) {
           else {
             document.getElementById('rec-sec-rating-row' + d).style.display = 'none';
           }
-
-          // The regexp isolates the first part of the URL (domain plus subdomain)
-          // to give a short URL for displaying in the info window.
           if (place.website) {
             var fullUrl = place.website;
             var website = hostnameRegexp.exec(place.website);
@@ -344,9 +340,6 @@ function showRecomendations(results) {
             else {
               document.getElementById('rec-sec-rating-row' + d).style.display = 'none';
             }
-
-            // The regexp isolates the first part of the URL (domain plus subdomain)
-            // to give a short URL for displaying in the info window.
             if (place.website) {
               var fullUrl = place.website;
               var website = hostnameRegexp.exec(place.website);
@@ -369,7 +362,7 @@ function showRecomendations(results) {
 }
 
 function showPhotos(place) {
-  // place photo, logging to test. Adds photo to photo section on clicked item.
+  // Generates Place photo's for clicked marker, and places them into a gallery.
   if (place.photos) {
     var i = 0;
     for (i = 0; i < 4; i++) {
@@ -402,7 +395,7 @@ function searchForLodging() {
     places.nearbySearch(search, function(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-        // Create a marker for each amenity found
+        // Create a marker for each Accommodation found
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Hotels.png';
           // Use marker animation to drop the icons incrementally on the map.
@@ -427,7 +420,7 @@ function searchForLodging() {
     places.nearbySearch(search, function(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-        // Create a marker for each amenity found
+        // Create a marker for each Accommodation found
         for (var i = 0; i < results.length; i++) {
           var markerIcon = 'assests/Hotels.png';
           // Use marker animation to drop the icons incrementally on the map.
@@ -541,9 +534,6 @@ function buildISContent(place) {
   else {
     document.getElementById('is-rating-row').style.display = 'none';
   }
-
-  // The regexp isolates the first part of the URL (domain plus subdomain)
-  // to give a short URL for displaying in the info window.
   if (place.website) {
     var fullUrl = place.website;
     var website = hostnameRegexp.exec(place.website);
